@@ -1,5 +1,7 @@
+//postModel.js
 import mongoose from "mongoose";
-const {ObjectId}=mongoose.Schema.Types
+const {ObjectId}=mongoose.Types
+
 
 const postSchema=new mongoose.Schema({
     title:{

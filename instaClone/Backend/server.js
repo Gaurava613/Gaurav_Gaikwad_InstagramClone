@@ -1,3 +1,4 @@
+//server.js
 import express from "express";
 import mongoose from "mongoose";
 import userModel from "./models/userModel.js";
@@ -19,6 +20,9 @@ mongoose.connect(process.env.MONGO_URI)
 })
 
 app.use(express.json())
+// app.use('/api', router);
+// app.use('/api', postRouter);
+
 app.use(router)
 app.use(postRouter)
 
