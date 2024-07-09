@@ -28,7 +28,7 @@ router.post('/register', async (req, res) => {
 
         const userData = new userModel({ fullName, email, password });
         userData.save()
-            .then((addUser) => {  // Add `addUser` parameter
+            .then((addUser) => { 
                 res.status(201).json({ message: 'User added successfully', data: addUser });
             })
             .catch((error) => {
@@ -43,7 +43,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password ) {
         return res.status(400).json({ message: "Mandatory fields cannot be empty" });
     }
 
@@ -56,7 +56,8 @@ router.post('/login', async (req, res) => {
                 return res.status(401).json({ message: 'Wrong password' });
             } else {
                 const jwtToken = jwt.sign({ _id: dbUser._id }, process.env.JWT_SECRET);
-                return res.json({ message: 'Logged in Successfully', data: dbUser, token: jwtToken });
+                const {_id, fullName ,email}=dbUser
+                return res.json({ message: 'Logged in Successfully', token: jwtToken ,userInfo:{_id,fullName,email} });
             }
         }
     } catch (error) {

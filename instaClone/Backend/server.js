@@ -6,7 +6,7 @@ import router from "./router/userRouter.js";
 import dotenv from 'dotenv'
 import postModel from "./models/postModel.js";
 import postRouter from "./router/postRoute.js";
-
+import cors from 'cors'
 dotenv.config()
 
 const app=express()
@@ -20,8 +20,7 @@ mongoose.connect(process.env.MONGO_URI)
 })
 
 app.use(express.json())
-// app.use('/api', router);
-// app.use('/api', postRouter);
+app.use(cors())
 
 app.use(router)
 app.use(postRouter)
